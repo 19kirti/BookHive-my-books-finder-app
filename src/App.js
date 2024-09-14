@@ -5,6 +5,7 @@ import BookItem from './components/BookItem';
 import BooksInfo from './components/BooksInfo';
 import LoadingBar from 'react-top-loading-bar';
 import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
 
@@ -15,6 +16,9 @@ function App() {
   }
 
   return (
+
+    <Router>
+
     <div className="App">
 
     <Navbar/>
@@ -24,10 +28,19 @@ function App() {
     color='#f11946'
     progress={progress}
     />
+    
+    <Routes>
+    
+    <Route exact path = "/society" element={<BooksInfo showProgress={showProgress} category="society" />} />
+    <Route exact path = "/development" element={<BooksInfo showProgress={showProgress} category="development" />} /> 
+    <Route exact path = "/economics" element={<BooksInfo showProgress={showProgress} category="economics" />} />
+    <Route exact path = "/technology" element={<BooksInfo showProgress={showProgress} category="technology" />} />
 
-    <BooksInfo showProgress={showProgress} />
+    </Routes>
     
     </div>
+
+    </Router>
   );
 }
 

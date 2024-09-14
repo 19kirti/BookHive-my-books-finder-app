@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import BookItem from './BookItem'
 import SelectedItem from './SelectedItem';
 
@@ -9,6 +9,26 @@ const [search, setSearch] = useState("");
 //const [loading, setLoading] = useState(false);
 const [selectedBook, setSelectedBook] = useState([]);
 
+//const [category, setCategory] = useState([technology, wildlife, mankind, development])
+
+useEffect(()=>{
+  fetchData()
+}, [props.category]
+)
+
+const fetchData = async () => {
+
+  props.showProgress(10);
+  let url = `https://www.googleapis.com/books/v1/volumes?q=${props.category}&key=AIzaSyCh-CadW3Vs1uIvEIYQjnOhOI1d2r52Xxw`;
+  props.showProgress(30);
+  let data = await fetch(url);
+  props.showProgress(50);
+  let parsedData = await data.json();
+  props.showProgress(70);
+  setItems(parsedData.items);
+  props.showProgress(100);
+  console.log(parsedData);
+}
 
 const handleChange = (event) => {
 
