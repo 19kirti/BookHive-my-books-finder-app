@@ -37,8 +37,23 @@
   }
 }
 
+.form-control {
+border-radius: 5px;  
+border-color: black;
+border-width: 2px;
+}
+
+.navbar {
+  background-color: #ffbf87; /* Navbar color */
+}
+
+.navbar a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
 /* Set a uniform size for the book item cards */
 .card {
+  background: oldlace; /* Card background */
   width: auto;
   height: 100%; /* Adjust this value to the desired card height */
   display: flex;
@@ -46,6 +61,15 @@
   justify-content: space-between; /* Ensure spacing between content */
   border-color: rgb(0, 0, 0);
   border-radius: 50px;
+  border-width: 2px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Slightly deeper shadow */
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px); /* More pronounced lift effect */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+  background-color: #ffbf87; /* Subtle background color change */
 }
 
 /* Ensure images have a fixed height and do not distort */
@@ -54,6 +78,12 @@
   height: 300px; /* Adjust height */
   width: auto; /* Keep image aspect ratio */
   object-fit: contain; /* Ensure the image fits within the container */
+  transition: transform 0.3s ease, filter 0.3s ease; /* Smooth transition */
+}
+
+.card img:hover {
+  transform: scale(1.1) rotate(2deg); /* Zoom effect with slight rotation */
+    filter: brightness(1.1); /* Slightly brighten the image */
 }
 
 /* Description with limited length */
@@ -67,3 +97,4 @@
 html {
   scroll-behavior: smooth;
 }
+

@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
 import Navbar from './components/Navbar';
-import BookItem from './components/BookItem';
 import BooksInfo from './components/BooksInfo';
 import LoadingBar from 'react-top-loading-bar';
 import { useState } from 'react';
@@ -33,10 +32,16 @@ function App() {
     
     <Route exact path = "/history" element={<BooksInfo showProgress={showProgress} category="history" maxResults={6}/>} />
     <Route exact path = "/society" element={<BooksInfo showProgress={showProgress} category="society" maxResults={6}/>} />
-    <Route exact path = "/development" element={<BooksInfo showProgress={showProgress} category="development" maxResults={6} />} /> 
     <Route exact path = "/economics" element={<BooksInfo showProgress={showProgress} category="economics" maxResults={6} />} />
+    <Route exact path = "/business" element={<BooksInfo showProgress={showProgress} category="business" maxResults={6} />} />
     <Route exact path = "/technology" element={<BooksInfo showProgress={showProgress} category="technology" maxResults={6} />} />
+    <Route exact path = "/fantasy" element={<BooksInfo showProgress={showProgress} category="fantasy" maxResults={6} />} /> 
     <Route exact path = "/fiction" element={<BooksInfo showProgress={showProgress} category="fiction" maxResults={6}/>} />
+    <Route exact path = "/horror" element={<BooksInfo showProgress={showProgress} category="horror" maxResults={6}/>} />
+    <Route exact path = "/poetry" element={<BooksInfo showProgress={showProgress} category="poetry" maxResults={6}/>} />
+    <Route exact path = "/literature" element={<BooksInfo showProgress={showProgress} category="literature" maxResults={6}/>} />
+    <Route exact path = "/philosophy" element={<BooksInfo showProgress={showProgress} category="philosophy" maxResults={6}/>} />
+    <Route exact path = "/travel" element={<BooksInfo showProgress={showProgress} category="travel" maxResults={6}/>} />
 
     </Routes>
     

@@ -121,7 +121,7 @@ const removeFromFavorites = (bookId) => {
 
     <form className="d-flex my-3 mx-3" role="search">
         <input className="form-control me-2" onChange={handleChange} type="search" placeholder="Search" aria-label="Search"/>
-        <button onClick={handleClick} className="btn btn-outline-success" type="submit">Search</button>
+        <button onClick={handleClick} className="btn btn-outline-danger" type="submit">Search</button>
     </form>
 
     <h2>All Books</h2>
@@ -132,6 +132,7 @@ const removeFromFavorites = (bookId) => {
             <BookItem title={elements.volumeInfo.title} publisher={elements.volumeInfo.publisher} bookurl={elements.volumeInfo.infoLink} image={elements.volumeInfo.imageLinks.thumbnail} addToReadLater={() => addToReadLater(elements)} 
               isFavorite={favorites.some((fav) => fav.id === elements.id)}
               handleAddToFavorites={() => addToFavorites(elements)}
+              bookId={elements.id}
                />
             </div>
         })}
@@ -147,7 +148,10 @@ const removeFromFavorites = (bookId) => {
               publisher={elements.volumeInfo.publisher} 
               bookurl={elements.volumeInfo.infoLink} 
               image={elements.volumeInfo.imageLinks.thumbnail}
-              removeFromReadLater={() => removeFromReadLater(elements.id)} />
+              removeFromReadLater={() => removeFromReadLater(elements.id)}
+              isFavorite={favorites.some((fav) => fav.id === elements.id)}
+              handleAddToFavorites={() => addToFavorites(elements)}
+              bookId={elements.id} />
           </div>
         ))}
       </div>
@@ -163,6 +167,8 @@ const removeFromFavorites = (bookId) => {
               image={elements.volumeInfo.imageLinks?.thumbnail}
               isFavorite={true}
               handleRemoveFromFavorites={() => removeFromFavorites(elements.id)}
+              addToReadLater={() => addToReadLater(elements)}
+              bookId={elements.id}
             />
           </div>
         ))}
