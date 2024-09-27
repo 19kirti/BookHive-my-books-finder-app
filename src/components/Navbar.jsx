@@ -25,7 +25,15 @@ const Navbar = () => {
           </li>
 
           <li className="nav-item">
-            <a className="nav-link" href="#selected">Selected Books</a>
+            <a className="nav-link" href="#readlater">Read Later Books</a>
+          </li>
+
+          <li className="nav-item">
+            <a className="nav-link" href="#favorite">Favorite Books</a>
+          </li>
+
+          <li className="nav-item">
+            <Link className="nav-link" to="/history">History</Link>
           </li>
 
           <li className="nav-item">
@@ -42,6 +50,10 @@ const Navbar = () => {
 
           <li className="nav-item">
             <Link className="nav-link" to="/technology">Technology</Link>
+          </li>
+
+          <li className="nav-item">
+            <Link className="nav-link" to="/fiction">Fiction</Link>
           </li>
 
         </ul>

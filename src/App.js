@@ -31,10 +31,12 @@ function App() {
     
     <Routes>
     
+    <Route exact path = "/history" element={<BooksInfo showProgress={showProgress} category="history" maxResults={6}/>} />
     <Route exact path = "/society" element={<BooksInfo showProgress={showProgress} category="society" maxResults={6}/>} />
     <Route exact path = "/development" element={<BooksInfo showProgress={showProgress} category="development" maxResults={6} />} /> 
     <Route exact path = "/economics" element={<BooksInfo showProgress={showProgress} category="economics" maxResults={6} />} />
     <Route exact path = "/technology" element={<BooksInfo showProgress={showProgress} category="technology" maxResults={6} />} />
+    <Route exact path = "/fiction" element={<BooksInfo showProgress={showProgress} category="fiction" maxResults={6}/>} />
 
     </Routes>
     

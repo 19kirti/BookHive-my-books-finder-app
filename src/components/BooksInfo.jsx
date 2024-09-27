@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import BookItem from './BookItem'
-import SelectedItem from './SelectedItem';
+import ReadLaterItem from './ReadLaterItem';
 import FavItem from './FavItem';
 
 const BooksInfo = (props) => {
@@ -8,8 +8,13 @@ const BooksInfo = (props) => {
 const [items, setItems] = useState([]);
 const [search, setSearch] = useState("");
 //const [loading, setLoading] = useState(false);
-const [selectedBook, setSelectedBook] = useState([]);
 const [currentPage, setCurrentPage] = useState(1);
+
+const [readLaterBooks, setReadLaterBooks] = useState(() => {
+  const savedReadLaterBooks = localStorage.getItem('readLaterBooks');
+  return savedReadLaterBooks ? JSON.parse(savedReadLaterBooks) : [];
+});
+
 const [favorites, setFavorites] = useState(() => {
   const savedFavorites = localStorage.getItem('favoriteBooks');
   return savedFavorites ? JSON.parse(savedFavorites) : [];
@@ -62,14 +67,21 @@ const handleClick = async (event) => {
         
 }
 
-const handleSelect = (book) => {
-    setSelectedBook((prevSelectedBooks)=>[...prevSelectedBooks, book]
-    );
-}
+const addToReadLater = (book) => {
+  setReadLaterBooks((prevReadLaterBooks) => {
+    const updatedList = [...prevReadLaterBooks, book];
+    localStorage.setItem('readLaterBooks', JSON.stringify(updatedList));
+    return updatedList;
+  });
+};
 
-const handleDeSelect = (book) => {
-setSelectedBook((prevSelectedBooks)=>prevSelectedBooks.filter((selected)=>selected.id!==book.id))
-}
+const removeFromReadLater = (bookId) => {
+  setReadLaterBooks((prevReadLaterBooks) => {
+    const updatedList = prevReadLaterBooks.filter((book) => book.id !== bookId);
+    localStorage.setItem('readLaterBooks', JSON.stringify(updatedList));
+    return updatedList;
+  });
+};
 
 const handlePrevClick = () => {
 if(currentPage>1){
@@ -117,7 +129,7 @@ const removeFromFavorites = (bookId) => {
         {
         items.map((elements) => {
             return <div className='col-md-4 my-3' key={elements.id}>
-            <BookItem title={elements.volumeInfo.title} publisher={elements.volumeInfo.publisher} bookurl={elements.volumeInfo.infoLink} image={elements.volumeInfo.imageLinks.thumbnail} handleSelect={()=>handleSelect(elements)} 
+            <BookItem title={elements.volumeInfo.title} publisher={elements.volumeInfo.publisher} bookurl={elements.volumeInfo.infoLink} image={elements.volumeInfo.imageLinks.thumbnail} addToReadLater={() => addToReadLater(elements)} 
               isFavorite={favorites.some((fav) => fav.id === elements.id)}
               handleAddToFavorites={() => addToFavorites(elements)}
                />
@@ -126,16 +138,16 @@ const removeFromFavorites = (bookId) => {
 
     </div>
 
-    <h2>Selected Books</h2>
+    <h2>Read Later Section</h2>
       <div className="row">
-        {selectedBook.map((elements) => (
+        {readLaterBooks.map((elements) => (
           <div className="col-md-4 my-3" key={elements.id}>
-            <SelectedItem
+            <ReadLaterItem
               title={elements.volumeInfo.title}
               publisher={elements.volumeInfo.publisher} 
               bookurl={elements.volumeInfo.infoLink} 
               image={elements.volumeInfo.imageLinks.thumbnail}
-              handleDeSelect={() => handleDeSelect(elements)} />
+              removeFromReadLater={() => removeFromReadLater(elements.id)} />
           </div>
         ))}
       </div>

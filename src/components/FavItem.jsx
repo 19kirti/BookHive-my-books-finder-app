@@ -4,7 +4,7 @@ const FavItem = (props) => {
     let {title, publisher, bookurl, image, isFavorite, handleAddToFavorites, handleRemoveFromFavorites} = props;
 
     return (
-      <div className="mx-3 my-3 card" id="selected" >
+      <div className="mx-3 my-3 card" id="favorite" >
       <img src= {image} className="card-img-top" alt="..."/>
       <div className="card-body">
         <h5 className="card-title">{title}</h5>
