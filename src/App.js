@@ -4,6 +4,8 @@ import BooksInfo from './components/BooksInfo';
 import LoadingBar from 'react-top-loading-bar';
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+import About from './components/About';
 
 function App() {
 
@@ -28,6 +30,10 @@ function App() {
     />
     
     <Routes>
+    
+    <Route exact path = "/home" element={<Home showProgress={showProgress} /> } />
+    <Route exact path = "/about" element={<About showProgress={showProgress} />} />
+    <Route exact path = "/" element={<Home showProgress={showProgress} /> } />
     
     <Route exact path = "/history" element={<BooksInfo showProgress={showProgress} category="history" maxResults={6}/>} />
     <Route exact path = "/society" element={<BooksInfo showProgress={showProgress} category="society" maxResults={6}/>} />
